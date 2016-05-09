@@ -1,0 +1,94 @@
+U-Boot 2011.06-00000-g1fd9324-dirty
+with debug
+first output
+U-Boot 2011.06-00000-g1fd9324-dirty (Apr 30 2016 - 22:14:00)
+
+U-Boot code: 00000000 -> 00026040  BSS: -> 00034CF8
+Board:	S3c44B0X aka ac-100 fingerprint
+I2C:   ready
+monitor len: 00034CF8
+ramsize: 00800000
+TLB table at: 0c7f0000
+Top of RAM usable for U-Boot at: 0c7f0000
+Reserving 211k for U-Boot at: 0c7bb000
+Reserving 384k for malloc() at: 0c75b000
+Reserving 24 Bytes for Board Info at: 0c75afe8
+Reserving 120 Bytes for Global Data at: 0c75af70
+New Stack Pointer is: 0c75af60
+RAM Configuration:
+Bank #0: 0c000000 8 MiB
+relocation Offset is: 0c7bb000
+monitor flash len: 0002A970
+Now running in RAM - U-Boot at: 0c7bb000
+Flash: [flash_get_size, 225] Entering ...
+flash_protect ON: from 0xFFFE0000 to 0xFFFFFFFF
+4 MiB
+Destroy Hash Table: 0c7e1254 table = (null)
+Create Hash Table: N=512
+INSERT: table 0c7e1254, filled 1/521 rv 0c77b798 ==> name="baudrate" value="115200"
+INSERT: table 0c7e1254, filled 2/521 rv 0c77c824 ==> name="bootargs" value="devfs=mount root=ramfs console=ttyS1,115200"
+INSERT: table 0c7e1254, filled 3/521 rv 0c77ba14 ==> name="bootcmd" value="bootm 0x50000"
+INSERT: table 0c7e1254, filled 4/521 rv 0c77bf18 ==> name="bootdelay" value="100"
+INSERT: table 0c7e1254, filled 5/521 rv 0c77bbf4 ==> name="bootfile" value=""u-boot.bin""
+INSERT: table 0c7e1254, filled 6/521 rv 0c77b990 ==> name="ethact" value="RTL8019-0"
+INSERT: table 0c7e1254, filled 7/521 rv 0c77b624 ==> name="ethaddr" value="00:50:c2:1e:af:fb"
+INSERT: table 0c7e1254, filled 8/521 rv 0c77c7a0 ==> name="ipaddr" value="192.168.10.123"
+INSERT: table 0c7e1254, filled 9/521 rv 0c77b8b8 ==> name="netmask" value="255.255.255.0"
+INSERT: table 0c7e1254, filled 10/521 rv 0c77b8dc ==> name="serverip" value="192.168.10.100"
+INSERT: table 0c7e1254, filled 11/521 rv 0c77c86c ==> name="stderr" value="serial"
+INSERT: table 0c7e1254, filled 12/521 rv 0c77b738 ==> name="stdin" value="serial"
+INSERT: table 0c7e1254, filled 13/521 rv 0c77c188 ==> name="stdout" value="serial"
+INSERT: free(data = 0c75b008)
+INSERT: done
+In:    serial
+Out:   serial
+Err:   serial
+Net:   RTL8019-0
+### main_loop entered: bootdelay=100
+
+### main_loop: bootcmd="bootm 0x50000"
+Hit any key to stop autoboot: 1 0 
+iGeek-v2uboot=>
+
+
+
+
+==================================================================================
+cold boot with debug
+==================================================================================
+monitor flash len: 0002A970
+Now running in RAM - U-Boot at: 0c7bb000
+Flash: [flash_get_size, 225] Entering ...
+flash_protect ON: from 0xFFFE0000 to 0xFFFFFFFF
+4 MiB
+Destroy Hash Table: 0c7e1254 table = (null)
+Create Hash Table: N=512
+INSERT: table 0c7e1254, filled 1/521 rv 0c77b798 ==> name="baudrate" value="115200"
+INSERT: table 0c7e1254, filled 2/521 rv 0c77c824 ==> name="bootargs" value="devfs=mount root=ramfs console=ttyS1,115200"
+INSERT: table 0c7e1254, filled 3/521 rv 0c77ba14 ==> name="bootcmd" value="bootm 0x50000"
+INSERT: table 0c7e1254, filled 4/521 rv 0c77bf18 ==> name="bootdelay" value="100"
+INSERT: table 0c7e1254, filled 5/521 rv 0c77bbf4 ==> name="bootfile" value=""u-boot.bin""
+INSERT: table 0c7e1254, filled 6/521 rv 0c77b990 ==> name="ethact" value="RTL8019-0"
+INSERT: table 0c7e1254, filled 7/521 rv 0c77b624 ==> name="ethaddr" value="00:50:c2:1e:af:fb"
+INSERT: table 0c7e1254, filled 8/521 rv 0c77c7a0 ==> name="ipaddr" value="192.168.10.123"
+INSERT: table 0c7e1254, filled 9/521 rv 0c77b8b8 ==> name="netmask" value="255.255.255.0"
+INSERT: table 0c7e1254, filled 10/521 rv 0c77b8dc ==> name="serverip" value="192.168.10.100"
+INSERT: table 0c7e1254, filled 11/521 rv 0c77c86c ==> name="stderr" value="serial"
+INSERT: table 0c7e1254, filled 12/521 rv 0c77b738 ==> name="stdin" value="serial"
+INSERT: table 0c7e1254, filled 13/521 rv 0c77c188 ==> name="stdout" value="serial"
+INSERT: free(data = 0c75b008)
+INSERT: done
+In:    serial
+Out:   serial
+Err:   serial
+Net:   RTL8019-0
+### main_loop entered: bootdelay=100
+
+### main_loop: bootcmd="bootm 0x50000"
+Hit any key to stop autoboot: 1 0 
+iGeek-v2uboot=>
+
+
+
+=======================================================================================
+
