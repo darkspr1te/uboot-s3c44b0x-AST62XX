@@ -72,7 +72,7 @@ void shiftOut(int dataPin, int clockPin, int val)
   //      launchAndWaitTimer0();
         int count = 8;
         mask = 1 << (count - 1);
-        for (i = 0; i < count; i++) {   // send 'count' bits to PHY register
+        for (i = 0; i < count; i++) {   
 
         	PORTC_LCD_DATA = PORTC_LCD_DATA & (0xFFFFFFFF - CLK_PIN);
           if (mask & val)

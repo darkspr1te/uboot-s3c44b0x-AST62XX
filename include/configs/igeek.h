@@ -64,6 +64,8 @@
 #ifdef CONFIG_DRIVER_RTL8019 
 #define RTL8019_BASE 0x06000000
 #undef CONFIG_SHOW_ACTIVITY
+//#define RTL8019_BUS32 0
+//#define CONFIG_SMC_USE_16_BIT
 #define CONFIG_NET_RETRY_COUNT		10
 				
 #define CONFIG_RBTREE
@@ -133,13 +135,16 @@
 
 #define CONFIG_NET_MULTI
 #define CONFIG_BOOTDELAY	10
-#define CONFIG_ETHADDR	00:50:c2:1e:af:fb
+#define CONFIG_ETHADDR	5a:50:c2:1e:af:fb
 //#define CONFIG_BOOTARGS  "setenv bootargs console=ttyS10,115200"
 #define CONFIG_BOOTARGS  "devfs=mount root=ramfs console=ttyS0,115200"
 
 #define CONFIG_NETMASK  255.255.255.0
 #define CONFIG_IPADDR   192.168.10.28
 #define CONFIG_SERVERIP	192.168.10.1
+#define CONFIG_GATEWAYIP 192.168.10.1
+#define CONFIG_DNSIP 192.168.10.1
+#define CONFIG_HOSTNAME "igeekhacked"
 //#define CONFIG_BOOTFILE	"zImage"
 #define CONFIG_BOOTFILE	"u-boot.bin"
 #define CONFIG_BOOTCOMMAND	"bootm 0xC000000"   

@@ -87,19 +87,43 @@
 .equ    Tchr,       0x0 /* 0x2=3clk 0x0=0clks  */
 .equ    REFCNT,       1550
 
-/* MEMORY_CONFIG第一个值是BWSCON寄存器，各位表示的情况如下:
-  [0    ]   : 0 表示 LITTLE ENDIAN, 1 表示BIG ENDIAN 
-  [1 - 2]   : 表示blank 0 数据总线宽度 00:8-bit 01:16-bit 10:32-bit
-  [4 - 5]   : 表示blank 1 数据总线宽度
-  [6    ]   : 表示blank 1 wait开关, 0:WAIT disable  1:WAIT enable
-  [7    ]   : 表示blank 1 是否使用 UB/LB, 0:not using UB/LB, 1:using UB/LB
-  [8 - 9]   : 表示blank 2 数据总线宽度
-  [10   ]   : 表示blank 2 wait开关
-  [11   ]   : 表示blank 1 是否使用 UB/LB
+/* MEMORY_CONFIG BUS WIDTH & WAIT CONTROL REGISTER:0x01C80000
+  [0    ]   : 0  LITTLE ENDIAN, 1 BIG ENDIAN R/O
+  [1 - 2]   : Indicates data bus width for bank 0 00:8-bit 01:16-bit 10:32-bit
+  [3	]	: N/A
+   [4 - 5]   : These two bits determine data bus width for bank 1
+  [6    ]   : This bit determines WAIT status for bank 1, 0:WAIT disable  1:WAIT enable
+  [7    ]   : This bit determines SRAM for using UB/LB for bank 1 UB/LB, 0:not using UB/LB, 1:using UB/LB
+   [8 - 9]   : These two bits determine data bus width for bank 2
+  [10   ]   :This bit determines WAIT status for bank 2
+  [11   ]   : This bit determines SRAM for using UB/LB for bank 2
+  
+   [12:13]	:These two bits determine data bus width for bank 3
+  [14	]	:This bit determines WAIT status for bank 3
+  [15	]	:This bit determines SRAM for using UB/LB for bank 3
+  
+   [16:17]	:These two bits determine data bus width for bank 4
+  [18	]	:This bit determines WAIT status for bank 4
+  [19	]	:This bit determines SRAM for using UB/LB for bank 4
+  
+   [20:21]	:These two bits determine data bus width for bank 5
+  [22	]	:This bit determines WAIT status for bank 5
+  [23	]	:This bit determines SRAM for using UB/LB for bank 5
+   [24:25]	:These two bits determine data bus width for bank 6
+  [26	]	:This bit determines WAIT status for bank 6
+  [27	]	:This bit determines SRAM for using UB/LB for bank 6
+   [28:29]	:These two bits determine data bus width for bank 7
+  [30	]	:This bit determines WAIT status for bank 7
+  [31	]	:This bit determines SRAM for using UB/LB for bank 7
+  
   ........
  */
+ /*
+ change from 0x1001102 to 1000102 for 8bit on GCS3/bank3/0x6000000
+ try 0x1000102
+ */
 MEMORY_CONFIG:
-  .long   0x01001102 /* Bank0 = OM[1:0] , Bank1-7 16bit, Bank2=Nowait,UB/LB*/
+  .long   0x1008102 /* Bank0 = OM[1:0] , Bank1-7 16bit, Bank2=Nowait,UB/LB*/
   .word ((B0_Tacs<<13)+(B0_Tcos<<11)+(B0_Tacc<<8)+(B0_Tcoh<<6)+(B0_Tah<<4)+(B0_Tacp<<2)+(B0_PMC)) /*GCS0*/
   .word ((B1_Tacs<<13)+(B1_Tcos<<11)+(B1_Tacc<<8)+(B1_Tcoh<<6)+(B1_Tah<<4)+(B1_Tacp<<2)+(B1_PMC)) /*GCS1*/
   .word ((B2_Tacs<<13)+(B2_Tcos<<11)+(B2_Tacc<<8)+(B2_Tcoh<<6)+(B2_Tah<<4)+(B2_Tacp<<2)+(B2_PMC)) /*GCS2*/

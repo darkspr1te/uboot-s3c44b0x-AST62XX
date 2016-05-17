@@ -31,7 +31,7 @@
 #include <config.h>
 
 #ifdef CONFIG_DRIVER_RTL8019
-#define ETH_ADDR_SFT (1) 
+#define ETH_ADDR_SFT (0) 
 #define EI_SHIFT(x) ((x)<<ETH_ADDR_SFT) 
 #define	RTL8019_REG_00        		(RTL8019_BASE + EI_SHIFT(0x00))
 #define	RTL8019_REG_01        		(RTL8019_BASE + EI_SHIFT(0x01))

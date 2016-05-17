@@ -40,7 +40,7 @@
 
 static unsigned char get_reg (unsigned int regno)
 {
-	return (*(unsigned char *) regno);
+	return (*(volatile unsigned char *) regno);
 }
 static unsigned short get_reg_short (unsigned int regno)
 {
@@ -75,13 +75,13 @@ int rtl8019_init (struct eth_device *dev,bd_t * bd)
 {
 	uchar enetaddr[6];
 	eth_reset ();
-	put_reg (RTL8019_COMMAND, RTL8019_PAGE0STOP);
-	put_reg (RTL8019_DATACONFIGURATION, 0x49);
+	put_reg (RTL8019_COMMAND, RTL8019_PAGE0STOP);//0x21
+	put_reg (RTL8019_DATACONFIGURATION, 0x48);
 	put_reg (RTL8019_REMOTEBYTECOUNT0, 0x00);
 	put_reg (RTL8019_REMOTEBYTECOUNT1, 0x00);
 	put_reg (RTL8019_RECEIVECONFIGURATION, 0x00);	/*00; */
 	put_reg (RTL8019_TRANSMITPAGE, RTL8019_TPSTART);
-	put_reg (RTL8019_TRANSMITCONFIGURATION, 0x02);
+	put_reg (RTL8019_TRANSMITCONFIGURATION, 0x00);//maybe 0x?
 	put_reg (RTL8019_PAGESTART, RTL8019_PSTART);
 	put_reg (RTL8019_BOUNDARY, RTL8019_PSTART);
 	put_reg (RTL8019_PAGESTOP, RTL8019_PSTOP);
@@ -116,8 +116,8 @@ static unsigned char nic_to_pc (void)
 {
 	unsigned char rec_head_status;
 	unsigned char next_packet_pointer;
-	unsigned char packet_length0;
-	unsigned char packet_length1;
+//	unsigned char packet_length0;
+//	unsigned char packet_length1;
 	unsigned short rxlen = 0;
 	unsigned int i = 4;
 	unsigned char current_point;
@@ -176,17 +176,22 @@ static unsigned char nic_to_pc (void)
 /* Get a data block via Ethernet */
 int rtl8019_recv (struct eth_device *dev)
 {
-	unsigned char temp, current_point;
+	unsigned char temp, current_point,othertemp,secondtemp;
 
 	put_reg (RTL8019_COMMAND, RTL8019_PAGE0);
 
 	while (1) {
 		
 		temp = get_reg (RTL8019_INTERRUPTSTATUS);
-		printf("%02x ",temp);
+		othertemp= get_reg(RTL8019_REG_0a);
+		secondtemp =get_reg(RTL8019_REG_0b);
+	//	printf("ISR %02x",temp);
+		//printf("rega %02x",othertemp);
+	//	printf("regb %02x",secondtemp);
+		
 		if (temp & 0x90) {
 			/*overflow */
-			printf("over\n");
+		//	printf("over\n");
 			put_reg (RTL8019_COMMAND, RTL8019_PAGE0STOP);
 			udelay (2000);
 			put_reg (RTL8019_REMOTEBYTECOUNT0, 0);
@@ -194,7 +199,7 @@ int rtl8019_recv (struct eth_device *dev)
 			put_reg (RTL8019_TRANSMITCONFIGURATION, 2);
 			do {
 				current_point = nic_to_pc ();
-				printf("nic to pc\n");
+				//printf("nic to pc\n");
 			} while (get_reg (RTL8019_BOUNDARY) != current_point);
 
 			put_reg (RTL8019_TRANSMITCONFIGURATION, 0xe0);
@@ -205,10 +210,10 @@ int rtl8019_recv (struct eth_device *dev)
 			do {
 				put_reg (RTL8019_INTERRUPTSTATUS, 0x01);
 				current_point = nic_to_pc ();
-				printf("packet rec\n");
+				//printf("packet rec\n");
 			} while (get_reg (RTL8019_BOUNDARY) != current_point);
 		}
-		printf("while 1 exit\n");
+		//printf("while 1 exit\n");
 		if (!(temp & 0x1))
 			return 0;
 		/* done and exit. */
