@@ -103,8 +103,8 @@
 /*
  * BOOTP options
  */
-#define CONFIG_BOOTP_SUBNETMASK
-#define CONFIG_BOOTP_GATEWAY
+#define CONFIG_BOOTP_SUBNETMASK 
+#define CONFIG_BOOTP_GATEWAY 
 #define CONFIG_BOOTP_HOSTNAME
 #define CONFIG_BOOTP_BOOTPATH
 #define CONFIG_BOOTP_BOOTFILESIZE
@@ -141,13 +141,13 @@
 
 #define CONFIG_NETMASK  255.255.255.0
 #define CONFIG_IPADDR   192.168.10.28
-#define CONFIG_SERVERIP	192.168.10.1
+#define CONFIG_SERVERIP	192.168.10.104
 #define CONFIG_GATEWAYIP 192.168.10.1
 #define CONFIG_DNSIP 192.168.10.1
 #define CONFIG_HOSTNAME "igeekhacked"
 //#define CONFIG_BOOTFILE	"zImage"
-#define CONFIG_BOOTFILE	"u-boot.bin"
-#define CONFIG_BOOTCOMMAND	"bootm 0xC000000"   
+#define CONFIG_BOOTFILE	"image.bin"
+#define CONFIG_BOOTCOMMAND	"tftpboot;bootm"   
 /*
  * Miscellaneous configurable options
  */
@@ -161,8 +161,8 @@
 #define CONFIG_SYS_MEMTEST_START	0x0C000000	/* memtest works on	*/
 #define CONFIG_SYS_MEMTEST_END		0x0C800000	/* 4 ... 8 MB in DRAM	*/
 
-#define	CONFIG_SYS_LOAD_ADDR		0x0C000000	/* default load address	*/
-//#define	CONFIG_SYS_LOAD_ADDR		0x0c008000	/* default load address	*/
+//#define	CONFIG_SYS_LOAD_ADDR		0x0C000000	/* default load address	*/
+#define	CONFIG_SYS_LOAD_ADDR		0x0c008000	/* default load address	*/
 #define	CONFIG_SYS_HZ				1000		/* 1 kHz */
 
 						/* valid baudrates */

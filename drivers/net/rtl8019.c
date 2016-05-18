@@ -227,7 +227,7 @@ int rtl8019_send (struct eth_device *dev,volatile void *packet, int length)
 	volatile unsigned short *shortp;
 	unsigned int pn, i, count;
 
-	printf("eth_send....length=%d\n", length);
+	//printf("eth_send....length=%d\n", length);
 	count = length; if(count < 60) count = 60;
 	pn = length >> 1;
 	p = (volatile unsigned char *) packet;
