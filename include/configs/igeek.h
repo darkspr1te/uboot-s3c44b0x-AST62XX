@@ -42,7 +42,7 @@
 #define CONFIG_SYS_NO_CP15_CACHE
 #define CONFIG_ARCH_CPU_INIT
 
-#define CONFIG_S3C44B0_CLOCK_SPEED	60 /* we have a 60Mhz S3C44B0/10mhz quartz*/
+#define CONFIG_S3C44B0_CLOCK_SPEED	66 /* we have a 60Mhz S3C44B0/10mhz quartz*/
 //#define DEBUG 10
 
 #undef CONFIG_USE_IRQ			/* don't need them anymore */
@@ -60,12 +60,11 @@
  * Hardware drivers
  */
 #define CONFIG_DRIVER_RTL8019 
-//#define RTL8019_BASE 0x06000000
 #ifdef CONFIG_DRIVER_RTL8019 
 #define RTL8019_BASE 0x06000000
 #undef CONFIG_SHOW_ACTIVITY
-//#define RTL8019_BUS32 0
-//#define CONFIG_SMC_USE_16_BIT
+//#define RTL8019_BUS32 0 //not used but verify what cast's are used that word match the mem reading 
+//#define CONFIG_SMC_USE_16_BIT //taken as example it's not used
 #define CONFIG_NET_RETRY_COUNT		10
 				
 #define CONFIG_RBTREE
@@ -86,7 +85,7 @@
 //#define CONFIG_DISPLAY_CPUINFO
 #define CONFIG_DISPLAY_BOARDINFO
 //#define CONFIG_IDENT_STRING "-iGeek-coffee2code-build"
-#define CONFIG_IDENT_STRING "-rtc-uart-usb-debug{net}"
+#define CONFIG_IDENT_STRING "-rtc-uart-usb-debug-net"
 //#define GENERATED_GBL_DATA_SIZE 128
 //#define CONFIG_POST
 #define CONFIG_BOARD_EARLY_INIT_F
@@ -137,7 +136,7 @@
 #define CONFIG_BOOTDELAY	10
 #define CONFIG_ETHADDR	5a:50:c2:1e:af:fb
 //#define CONFIG_BOOTARGS  "setenv bootargs console=ttyS10,115200"
-#define CONFIG_BOOTARGS  "devfs=mount root=ramfs console=ttyS0,115200"
+#define CONFIG_BOOTARGS  "root=/dev/ram console=ttyS0,115200"
 
 #define CONFIG_NETMASK  255.255.255.0
 #define CONFIG_IPADDR   192.168.10.28
@@ -147,7 +146,7 @@
 #define CONFIG_HOSTNAME "igeekhacked"
 //#define CONFIG_BOOTFILE	"zImage"
 #define CONFIG_BOOTFILE	"image.bin"
-#define CONFIG_BOOTCOMMAND	"tftpboot;bootm"   
+#define CONFIG_BOOTCOMMAND	"tftpboot 0xc008000;go 0xc008000" //use go if not using uboot tftpboot patched image   
 /*
  * Miscellaneous configurable options
  */
@@ -159,10 +158,10 @@
 #define CONFIG_SYS_BARGSIZE		CONFIG_SYS_CBSIZE	/* Boot Argument Buffer Size	*/
 
 #define CONFIG_SYS_MEMTEST_START	0x0C000000	/* memtest works on	*/
-#define CONFIG_SYS_MEMTEST_END		0x0C800000	/* 4 ... 8 MB in DRAM	*/
+#define CONFIG_SYS_MEMTEST_END		0x0C800000	/* 4 ... 8 MB in DRAM	, try to switch to 10mb and run mem test, see whats kicks*/
 
 //#define	CONFIG_SYS_LOAD_ADDR		0x0C000000	/* default load address	*/
-#define	CONFIG_SYS_LOAD_ADDR		0x0c008000	/* default load address	*/
+#define	CONFIG_SYS_LOAD_ADDR		0x0c008000	/* default load address	 early 2.4's like to use 0xc000000 but it's wrong*/
 #define	CONFIG_SYS_HZ				1000		/* 1 kHz */
 
 						/* valid baudrates */

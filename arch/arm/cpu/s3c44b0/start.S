@@ -320,7 +320,7 @@ cpu_init_crit:
 #if CONFIG_S3C44B0_CLOCK_SPEED==66
 	ldr	r0, =0x34031	/* 66MHz (Quartz=11MHz) */
 #elif CONFIG_S3C44B0_CLOCK_SPEED==60
-	ldr	r0, =0x88042	/* 66MHz (Quartz=10MHz) */
+	ldr	r0, =0x88042	/* 60MHz (Quartz=10MHz) */
 #elif CONFIG_S3C44B0_CLOCK_SPEED==75
 	ldr	r0, =0x610c1 /*B2: Xtal=20mhz Fclk=75MHz  */
 #else

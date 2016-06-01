@@ -1,0 +1,1 @@
+make ARCH=arm CROSS_COMPILE=/home/darkspr1te/Desktop/jtag/toolchains/FriendlyARM/toolschain/4.4.3/bin/arm-linux-

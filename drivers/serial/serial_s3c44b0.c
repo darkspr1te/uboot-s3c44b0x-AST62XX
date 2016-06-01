@@ -153,7 +153,7 @@ void serial_setbrg (void)
 
 	serial_flush_output();
 	serial_flush_input();
-	divisor = 0x19;
+	//divisor = 0x19;
 		UFCON0 = 0x0;
 		ULCON0 = 0x03;
 		UCON0 = 0x245;

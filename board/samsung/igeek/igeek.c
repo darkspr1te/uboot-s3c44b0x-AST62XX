@@ -116,9 +116,9 @@ int board_init (void)
 	
 
 	/* Port G */
-	PCONG = 0xff3c;
+	//PCONG = 0xff3c;
 	PUPG = 0x00;
-	//PCONG = 0x3; /*PG0= EINT0= ETH_INT prepared for linux kernel*/
+	PCONG = 0x3; /*PG0= EINT0= ETH_INT prepared for linux kernel*/
 
 	INTMSK = 0x07ffffff;
 	INTCON = 0x05;
@@ -128,10 +128,11 @@ int board_init (void)
     	Configure chip ethernet interrupt as High level
     	Port G EINT 0-7 EINT0 -> CHIP ETHERNET
     */
-	//temp = EXTINT;
-  // 	temp &= ~0x7;
-   // temp |= 0x1; /*LEVEL_HIGH*/
-	EXTINT = 0x40440;
+	temp = EXTINT;
+  	temp &= ~0x7;
+    temp |= 0x1; /*LEVEL_HIGH*/
+    EXTINT = temp;
+	//EXTINT = 0x40440;
 
     /*
     	Reset SMSC LAN91C96 chip
@@ -219,6 +220,7 @@ void nand_init(void)
 int checkboard(void)
 {
 	printf("Board:\tS3c44B0X aka ac-100 fingerprint\n");
+	printf("CPU Speed is %d MHZ\n",CONFIG_S3C44B0_CLOCK_SPEED);
 	return 0;
 }
 #endif
